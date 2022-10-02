@@ -109,7 +109,7 @@ puts "
 
 Hier die Ausgabe und der Vergleich zur Website:
 
-![picture 1](images/a965404834760626afe73785811995faa1629d2ab66a53f966443fbf22463a67.png)  
+![picture 1](images/b965404834760626afe73785811995faa1629d2ab66a53f966443fbf22463a67.png)  
 
 
 ## pushover Alarm auslösen, wenn die PV-Anlage einen speziellen Status hat
