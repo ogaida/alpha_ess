@@ -90,7 +90,7 @@ Folgende 3 Funktionen für das Abholen von Daten gibt es derzeit:
 Die Daten über `/api/ESS/GetLastPowerDataBySN` werden alle 10 Sekunden von der API neu bereitgestellt.
 
 ```ruby
-load "alpha_ess.rb" # require "alpha_ess"
+require "alpha_ess"
 ae = AlphaEss.new
 data = ae.get_last_power_data()
 netz = data["pmeter_l1"].to_f + data["pmeter_l2"].to_f + data["pmeter_l3"].to_f
@@ -115,7 +115,7 @@ Hier die Ausgabe und der Vergleich zur Website:
 ## pushover Alarm auslösen, wenn die PV-Anlage einen speziellen Status hat
 
 ```ruby
-load "alpha_ess.rb"
+require "alpha_ess"
 ae = AlphaEss.new
 ae_data = ae.get_last_power_data()
 batterie_ladung_erwartet = 40
@@ -134,7 +134,7 @@ end
 ## update ESS Settings
 
 ```ruby
-load "alpha_ess.rb"
+require "alpha_ess"
 ae = AlphaEss.new
 bat_min = ae.get_custom_use_ess_setting()["bat_use_cap"]
 puts "Batterie-Minimum: #{bat_min}"
