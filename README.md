@@ -85,6 +85,14 @@ Folgende 3 Funktionen für das Abholen von Daten gibt es derzeit:
 - get_last_power_data, bringt aktuelle Betriebsdaten (momentaner Verbrauch / Erzeugung etc.)
 - get_custom_use_ess_setting, holt Daten zur aktuellen Systemeinstellung
 
+## Systemeinstellungen verändern
+
+Hier wird es spannend. Die Funktion `set_custom_use_ess_setting` erwartet einen Ruby-Hash. Wie die Schlüssel und Werte aussehen sollten, lassen sich aus der Ausgabe der Funktion `get_custom_use_ess_setting` ableiten.
+Am besten Ihr spielt in den Einstellungen auf der Website herum speichert sie und prüft mit `get_custom_use_ess_setting` welche Schlüssel sich wie verändert haben. Dann habt ihr einen Idee wie ihr diese Werte per Script setzen
+könnt. Viel Erfolg :-) . 
+
+Hinweis: Man kann über `get_custom_use_ess_setting` die Einstellungen sichern. Einfach die Ausgabe in eine Datei schreiben.
+
 ## aktuellen Status abfragen
 
 Die Daten über `/api/ESS/GetLastPowerDataBySN` werden alle 10 Sekunden von der API neu bereitgestellt.
