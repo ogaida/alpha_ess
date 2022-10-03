@@ -127,8 +127,8 @@ require "alpha_ess"
 ae = AlphaEss.new
 ae_data = ae.get_last_power_data()
 batterie_ladung_erwartet = 40
-if (ae_data["soc"].to_f < soc_expexcted) 
-    ae.send_pushover_alarm_by_soc "Die Batterie hat aktuell weniger als #{soc_expexcted} % Ladung!"
+if (ae_data["soc"].to_f < batterie_ladung_erwartet) 
+    ae.send_pushover_alarm_by_soc "Die Batterie hat aktuell weniger als #{batterie_ladung_erwartet} % Ladung!"
 end
 # ae.set_min_soc(((ae_data["soc"].to_f)+0.9).to_i)
 # sleep 10
