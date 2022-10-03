@@ -126,9 +126,11 @@ Hier die Ausgabe und der Vergleich zur Website:
 require "alpha_ess"
 ae = AlphaEss.new
 ae_data = ae.get_last_power_data()
-batterie_ladung_erwartet = 40
+batterie_ladung_erwartet = 15
 if (ae_data["soc"].to_f < batterie_ladung_erwartet) 
-    ae.send_pushover_alarm_by_soc "Die Batterie hat aktuell weniger als #{batterie_ladung_erwartet} % Ladung!"
+    ae.send_pushover_alarm_by_soc "Die Batterie hat aktuell eine Ladung von #{ae_data["soc"]} %, erwartet sind #{batterie_ladung_erwartet} %!"
+else
+    puts "OK, die Ladung beträgt derzeit #{ae_data["soc"]} %."
 end
 # ae.set_min_soc(((ae_data["soc"].to_f)+0.9).to_i)
 # sleep 10
