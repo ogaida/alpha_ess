@@ -112,7 +112,6 @@ puts "
     Batteriebezug / Ladung: #{data["pbat"]}
     Verbrauch: #{data["pbat"] + data["ppv1"].to_f + netz}
 
-    
 "
 ```
 

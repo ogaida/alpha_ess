@@ -26,12 +26,13 @@ class AlphaEss
     end
 
     def get_last_power_data()
-        body = {
-            "sys_sn" => @serial,
-            "noLoading" => true
-        }
-        url = "https://cloud.alphaess.com/api/ESS/GetLastPowerDataBySN"
-        res = HTTParty.post(url, headers: header(), body: body.to_json)
+        #body = {
+        #    "sys_sn" => @serial,
+        #    "noLoading" => true
+        #}
+        url = "https://cloud.alphaess.com/api/ESS/GetLastPowerDataBySN?sys_sn=#{@serial}&noLoading=true"
+        #res = HTTParty.post(url, headers: header(), body: body.to_json)
+        res = HTTParty.get(url, headers: header())
         res.parsed_response["data"]
     end
 
@@ -102,10 +103,11 @@ class AlphaEss
             "username" => @username,
             "password" => @password
         }
-        res = HTTParty.post(url, headers: {
+        header = {
             "Accept" => "application/json",
             "Content-Type" => "application/json;charset=UTF-8"
-        }.update(secure_header_addon()), body: body.to_json)
+        }.update(secure_header_addon())
+        res = HTTParty.post(url, headers: header, body: body.to_json)
         @token = res.parsed_response["data"]["AccessToken"]
         @token_valid_to = Time.now.to_i+36000
         save_token()
@@ -115,7 +117,7 @@ class AlphaEss
         # thanks to https://github.com/CharlesGillanders
         t = Time.now.to_i
         { 
-            "authtimestamp" => t,
+            "authtimestamp" => t.to_s,
             "authsignature" => "#{AUTHPREFIX}#{Digest::SHA2.new(512).hexdigest("#{AUTHCONSTANT}#{t}")}#{AUTHSUFFIX}"
         }
     end
