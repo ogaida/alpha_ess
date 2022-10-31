@@ -37,7 +37,7 @@ class AlphaEss
     end
 
     def get_stics_by_period(beginDay = Time.now.strftime("%Y-%m-%d"), endDay = Time.now.strftime("%Y-%m-%d"))
-        url = "https://cloud.alphaess.com/api/Power/SticsByPeriod?beginDay=#{beginDay}&endDay=#{endDay}&tday=#{tday}&isOEM=0&SN=#{@serial}&noLoading=true"
+        url = "https://cloud.alphaess.com/api/Power/SticsByPeriod?beginDay=#{beginDay}&endDay=#{endDay}&tday=#{Time.now.strftime("%Y-%m-%d")}&isOEM=0&SN=#{@serial}&noLoading=true"
         res = HTTParty.get(url, headers: header())
         res.parsed_response["data"]
     end
