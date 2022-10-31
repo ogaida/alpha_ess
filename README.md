@@ -79,9 +79,10 @@ ae.send_pushover_alarm_by_soc("Nachrichtentext ...", po_user, po_token)
 
 Wenn ihr wissen wollt, was die einzelnen Funktionen zurückgeben und wo ihr welche Daten findet, dann probiert es einfach aus. Ich werde sicherlich bald ein youtube Video dazu machen, wo ich das vorführe.
 
-Folgende 3 Funktionen für das Abholen von Daten gibt es derzeit:
+Folgende 4 Funktionen für das Abholen von Daten gibt es derzeit:
 
-- get_stics_by_day, bringt statische Daten des Tages
+- get_stics_by_day, bringt statische Daten des aktuellen Tages
+- get_stics_by_period, bringt statische Daten bezogen auf einen Zeitraum von ganzen Tagen
 - get_last_power_data, bringt aktuelle Betriebsdaten (momentaner Verbrauch / Erzeugung etc.)
 - get_custom_use_ess_setting, holt Daten zur aktuellen Systemeinstellung
 
@@ -119,7 +120,6 @@ Hier die Ausgabe und der Vergleich zur Website:
 
 ![picture 1](images/b965404834760626afe73785811995faa1629d2ab66a53f966443fbf22463a67.png)  
 
-
 ## pushover Alarm auslösen, wenn die PV-Anlage einen speziellen Status hat
 
 ```ruby
@@ -152,3 +152,15 @@ ae.set_custom_use_ess_setting({"bat_use_cap" => 15})
 bat_min = ae.get_custom_use_ess_setting()["bat_use_cap"]
 puts "Batterie-Minimum neu: #{bat_min}"
 ```
+
+## Statischtische Daten über einen Zeitraum abfragen
+
+```ruby
+require "alpha_ess"
+ae = AlphaEss.new
+# aktueller Tag
+ae.get_stics_by_period()
+# letzte 3 Tage, ohne den aktuellen Tag
+ae.get_stics_by_period( (Time.now-86400*3).strftime("%Y-%m-%d"), (Time.now-86400).strftime("%Y-%m-%d"))
+```
+
